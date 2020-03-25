@@ -1,4 +1,4 @@
 public class Zombie {
-    private float movementSpeed;
+    protected float movementSpeed;
     
 }
