@@ -1,13 +1,38 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Game {
     public String[][] screen = new String[4][108]; 
-    public Plant p;
-    public Zombie z;
+    private ArrayList<Plant> p;
+    private ArrayList<Zombie> z;
     public int credits;
+    public boolean gameover = false;
+    public int score;
+
 
     public Game(int c) {
          credits = c;
+         p = new ArrayList<Plant>();
+         z = new ArrayList<Zombie>();
     } 
     
+    public int getCredits() {
+        return this.credits;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public boolean NoCredits() {
+        if (credits <= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void start() {
         System.out.println("_____________                                                                    __________                                            ");
         System.out.println("|            |  |                                                                         /                         |                  ");
@@ -75,5 +100,38 @@ public class Game {
                     }
                 }
             }
+    }
+    public boolean isEmpty(int y,int x) {
+        if (screen[y-1][x-1].equals(" ")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public void buy(int command,int y, int x) {
+        if (command==1) {
+            screen[y-1][x-1] ="S";
+            Plant ss = new SunFlower();
+            p.add(ss);
+            credits -= 5;
+        }
+        else  if (command==2) {
+            screen[y-1][x-1] ="P";
+            Plant pp = new Pea();
+            p.add(pp);
+            credits -= 10;
+        }
+    }
+
+    public void doZombiesWin() {
+        for (int i=0; i<=3;i++) {
+            if ((screen[i][0].equals("Z")) || (screen[i][0].equals("Y"))) {
+                this.gameover = true;
+            }
+        }
+    }
+    public boolean lose() {
+        return gameover;
     }
 }
