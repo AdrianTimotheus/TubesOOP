@@ -3,7 +3,9 @@ public class Main {
         boolean gameOver = false; 
         Game g = new Game(300);
         g.start();
-        g.print();
+        g.menu();
+        
+
         while (!gameOver) {
 
             gameOver = true;
