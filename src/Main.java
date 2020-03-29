@@ -63,6 +63,8 @@ public class Main {
             }
             else if (command.equals("SKIP")) {
                 valid = true;
+                //foreach plants in arraylist plant shoot
+                //foreach zombie in arraylist zombie move/eat
             }
             else {
                 System.out.println("Command yang Anda masukkan salah. Silahkan input kembali.");
