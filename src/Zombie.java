@@ -32,6 +32,21 @@ public abstract class Zombie implements ZombieBehavior {
         Random random = new Random();
         this.x = 107; //ujung kanan
         this.y = random.nextInt(4); //barisnya random
+        
+        int n = random.nextInt(4);
+        for (int i=0; i<n;i++) {
+            int m = random.nextInt(2);
+            if (m==0) {
+                Zombie zz = new Zambi();
+                z.add(zz);
+                screen[zz.getY()][107] ="Z";
+            }
+            else {
+                Zombie yy = new Yombie();
+                z.add(yy);
+                screen[yy.getY()][107] ="Y";
+            }
+        } 
         //jangan lupa         screen[y][x] = "Z"; //ditulis "Z" di kelas anaknya
     }
 
