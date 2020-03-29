@@ -37,7 +37,7 @@ public class Main {
                     System.out.print("Baris ke- (dari atas: 1-4) :");
                     y = input.nextInt();
                     System.out.print("Posisi ke- (dari kiri: 1-50) :");
-                    sx = input.nextInt();
+                    x = input.nextInt();
                 }
                 if (g.isEmpty(y,x)) {
                     int cek = g.getCredits();
