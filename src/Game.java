@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     public String[][] screen = new String[4][108]; 
@@ -8,7 +9,7 @@ public class Game {
     public int credits;
     public boolean gameover = false;
     public int score;
-
+    Random random = new Random();
 
     public Game(int c) {
          credits = c;
@@ -109,18 +110,65 @@ public class Game {
             return false;
         }
     }
+
     public void buy(int command,int y, int x) {
         if (command==1) {
-            screen[y-1][x-1] ="S";
-            Plant ss = new SunFlower();
+            Plant ss = new SunFlower(y-1, x-1);
             p.add(ss);
+            screen[y-1][x-1] ="S";
             credits -= 5;
         }
         else  if (command==2) {
-            screen[y-1][x-1] ="P";
-            Plant pp = new Pea();
+            Plant pp = new Pea(y-1, x-1);
             p.add(pp);
             credits -= 10;
+            screen[y-1][x-1] ="P";
+        }
+    }
+
+    public void zombieAttack() {
+        int n = random.nextInt(4);
+        for (int i=0; i<n;i++) {
+            int m = random.nextInt(2);
+            if (m==0) {
+                Zombie zz = new Zambi();
+                z.add(zz);
+                screen[zz.getY()][107] ="Z";
+            }
+            else {
+                Zombie yy = new Yombie();
+                z.add(yy);
+                screen[yy.getY()][107] ="Y";
+            }
+        } 
+    }
+
+    public void zombieMoving() {
+        int x,y,s;
+        String tipe;
+        
+        for (int i=0; i<z.size(); i++) {
+			Zombie now = z.get(i);
+			x = now.getX();
+            y = now.getY();
+            s = now.getSpeed();
+            tipe = now.getType();
+            screen[y][x] = " ";
+            if (isEmpty(y+1,x+1-s)) {
+                screen[y][x-s] = tipe;
+            }
+            else {
+                now.setX(x+1);
+                if (tipe.equals("Z")) {
+                    screen[y][x-1] = tipe;
+                }
+                else {
+                    screen[y][x] = "Y";
+                }
+            }
+		}
+        for (Zombie all:z) {
+            all.move();
         }
     }
 

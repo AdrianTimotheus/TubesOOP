@@ -8,6 +8,7 @@ public class Main {
         g.start();
         
         boolean valid = false;
+        int steps = 1;
         while (!g.lose() || !valid) {
             g.menu();
             System.out.print("Input command :");
@@ -62,14 +63,25 @@ public class Main {
                 System.out.println("Maaf, Anda tidak memiliki sisa credits. Pembelian tidak dapat dilakukan.");
             }
             else if (command.equals("SKIP")) {
-                valid = true;
-                //foreach plants in arraylist plant shoot
-                //foreach zombie in arraylist zombie move/eat
+                valid = true; 
+                if (steps == 1) { //pertama kali zombie muncul di layar
+                    g.zombieAttack();
+                    steps = 2;
+                }
+                else {
+                    g.zombieMoving();
+                    g.zombieAttack();
+                }
+                g.print();
             }
             else {
+                valid = false;
                 System.out.println("Command yang Anda masukkan salah. Silahkan input kembali.");
             }
             g.doZombiesWin();
+        }
+        if (g.lose()) {
+            System.out.println("Permainan telah berakhir. Score akhir Anda adalah");
         }
     }
 }

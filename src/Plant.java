@@ -2,11 +2,15 @@ public class Plant implements Shield {
     protected String type;
     protected int price;
     protected int shieldpower;
+    protected int xplant;
+    protected int yplant;
 
-    public Plant (String type, int price,int power) {
+    public Plant (String type, int price,int power,int xplant, int yplant) {
         this.type = type;
         this.price = price;
         this.shieldpower = power;
+        this.xplant = xplant;
+        this.yplant = yplant;
     }
     public String getType() {
         return this.type;
