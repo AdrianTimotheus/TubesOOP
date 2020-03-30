@@ -38,12 +38,6 @@ public class Zombie implements Attacker {
     public int getAttack() {
         return this.attack;
     }
-    public void showup() {
-        System.out.println(" ");
-    }
-    public void attack() {
-        System.out.println(" ");
-    }
 }
 
 //public abstract class Zombie implements ZombieBehavior {

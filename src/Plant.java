@@ -23,12 +23,8 @@ public class Plant implements Shield {
     public int getPower() {
         return this.shieldpower;
     }
-    public void buy() {
-        System.out.println(" ");
-    }
     public void gun(String[][] screen, ArrayList<Bullet> bulletArrayList)
     {
-//        System.out.println(" ");
         Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
         bulletArrayList.add(bullet);
         if(type.equals("S"))
@@ -37,7 +33,7 @@ public class Plant implements Shield {
         }
         else if(type.equals("P"))
         {
-            screen[yplant][xplant+1] = "="];
+            screen[yplant][xplant+1] = "=";
         }
     }
 }
