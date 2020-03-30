@@ -69,38 +69,28 @@ public class Game {
                 }
 
                 else if (i%2==0) {
-                    for (int k=1; k<=3; k++) {
-                        if (k==2) {
-                                if (i==2) {
-                                    index = 0;
-                                }
-                                else if (i==4) {
-                                    index = 1;
-                                }
-                                else if (i==6) {
-                                    index = 2;
-                                }
-                                else if (i==8) {
-                                    index = 3;
-                        }
-                            System.out.print("|");
-                                for (int j=0; j<=107; j++) {
-                                    System.out.print(screen[index][j] );
-                                }
-                
-                            System.out.print("|");
-                        }
-                        else {
-                            System.out.print("|");
-                            for (int j=1; j<=9; j++) {
-                                System.out.print("            ");
-                            }
-                            System.out.print("|");
-                        }
-                        System.out.println("\n");
+                       
+                    if (i==2) {
+                        index = 0;
                     }
+                    else if (i==4) {
+                        index = 1;
+                    }
+                    else if (i==6) {
+                        index = 2;
+                    }
+                    else if (i==8) {
+                        index = 3;
+                    }
+                        System.out.print("|");
+                            for (int j=0; j<=107; j++) {
+                                System.out.print(screen[index][j] );
+                            }
+                        System.out.println("|");
                 }
-            }
+                
+        }
+            
     }
     public boolean isEmpty(int y,int x) {
         if (screen[y-1][x-1].equals(" ")) {

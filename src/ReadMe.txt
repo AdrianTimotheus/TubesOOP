@@ -17,3 +17,11 @@ Setelah itu, pengguna akan diminta untuk memasukkan posisi yang diinginkan utk m
 a. Jika ternyata posisi yg diinginkan sudah ada tumbuhan lain, maka pengguna akan diminta ulang untuk memasukkan posisi lain.
 b. Jika credits yang dimiliki tidak cukup untuk melakukan pembelian, maka pembelian gagal.
 c. Jika credits yang dimiliki cukup, pembelian berhasil. Setelah itu game akan ditampilkan ke layar dengan tumbuhan yg dibeli sudah diposisikan pada tempatnya.
+
+Ketika pengguna memilih SKIP
+- Ketika pengguna memasukkan command  SKIP pertama kali : Zombie akan muncul dari ujung kanan layar, dimana letaknya maupun tipe zombie itu akan dirandom 
+NOTE : Karena random, jumlah zombie yg muncul jg akan bervariasi. Ada kalanya ketika pengguna input command SKIP, tidak ada penambahan zombie baru sama sekali di ujung kanan layar
+- Ketika pengguna memasukkan command SKIP kedua kali, dst : Zombie yg tadinya sdh muncul akan bergerak maju sesuai dengan speednya masing-masing.
+- Ketentuan zombie bergerak maju : Z (2 steps), Y (1 step)
+  Jika pada layar terdapat zombie dengan posisi sbg berikut : YZ
+  Maka, untuk seterusnya zombie ttp akan bergerak maju dalam keadaan seperti itu, karena Z tidak bisa melompati Y (Jika Z melompati Y, maka posisinya jadi berimpit)
