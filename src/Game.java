@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    public String[][] screen = new String[4][108]; 
+    public String[][] screen = new String[4][51]; 
     private ArrayList<Plant> p;
     private ArrayList<Zombie> z;
     private ArrayList<Bullet> bulletArrayList;
@@ -48,7 +48,7 @@ public class Game {
         System.out.println("|               | |          | |       |     |               \\  /           |      /         |        | |    |    | |       | | |       ");
         System.out.println("|               |  \\_________| |       |     |____            \\/    ________|     /_________ |________| |    |    | |_______| | |_______");
         for (int i=0; i<=3; i++) {
-            for (int j=0; j<=107; j++) {
+            for (int j=0; j<=50; j++) {
                 screen[i][j] =" ";
             }
         }
@@ -64,7 +64,7 @@ public class Game {
         int index=0;
         for (int i=1; i<=9; i++) {
                 if (i%2!=0) {
-                    for (int j=1; j<=110; j++) {
+                    for (int j=1; j<=53; j++) {
                         System.out.print("-");
                     }
                     System.out.println("\n");
@@ -85,7 +85,7 @@ public class Game {
                         index = 3;
                     }
                         System.out.print("|");
-                            for (int j=0; j<=107; j++) {
+                            for (int j=0; j<=50; j++) {
                                 System.out.print(screen[index][j] );
                             }
                         System.out.println("|");
@@ -125,12 +125,12 @@ public class Game {
             if (m==0) {
                 Zombie zz = new Zambi();
                 z.add(zz);
-                screen[zz.getY()][107] ="Z";
+                screen[zz.getY()][50] ="Z";
             }
             else {
                 Zombie yy = new Yombie();
                 z.add(yy);
-                screen[yy.getY()][107] ="Y";
+                screen[yy.getY()][50] ="Y";
             }
         } 
     }
@@ -166,16 +166,25 @@ public class Game {
 
     public void Shoot()
     {
-        //semua taneman nembak
-        for (Plant allPlants:p)
-        {
-            allPlants.gun(screen,bulletArrayList);
+        
+        if (bulletArrayList.size()==0) { //start nembak
+            //semua tanaman nembak
+            for (Plant allPlants:p)
+            {
+                allPlants.gun(screen,bulletArrayList);
+            }
         }
-
-        //semua peluru tetep terbang
-        for (Bullet allBullets:bulletArrayList)
-        {
-            allBullets.Move(screen);
+        else {
+            //semua peluru yg sudah ada tetep terbang
+            for (Bullet allBullets:bulletArrayList)
+            {
+                allBullets.Move(screen);
+            }
+            //semua tanaman nembak
+            for (Plant allPlants:p)
+            {
+                allPlants.gun(screen,bulletArrayList);
+            }
         }
     }
 

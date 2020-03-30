@@ -31,13 +31,13 @@ public class Main {
                 System.out.println("Anda dapat memilih lokasi untuk meletakkan Plant tsb.");
                 System.out.print("Baris ke- (dari atas: 1-4) :");
                 int y = input.nextInt();
-                System.out.print("Posisi ke- (dari kiri: 1-50) :");
+                System.out.print("Posisi ke- (dari kiri: 1-25) :");
                 int x = input.nextInt();
                 while (!g.isEmpty(y,x)) {
                     System.out.println("Posisi yang Anda masukkan saat ini tidak kosong. Silahkan input kembali.");
                     System.out.print("Baris ke- (dari atas: 1-4) :");
                     y = input.nextInt();
-                    System.out.print("Posisi ke- (dari kiri: 1-50) :");
+                    System.out.print("Posisi ke- (dari kiri: 1-25) :");
                     x = input.nextInt();
                 }
                 if (g.isEmpty(y,x)) {

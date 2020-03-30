@@ -19,13 +19,13 @@ public class Bullet implements BulletInterface
     public void Move(String[][] screen)
     {
         x++;
-        screen[y][x-1] = "";
+        screen[y][x-1] = " ";
 
-        if(power == 2) //pea
+        if (power == 2) //pea
         {
             screen[y][x] = "=";
         }
-        else if(power == 1) //sunflower
+        else if (power == 1) //sunflower
         {
             screen[y][x] = "-";
         }

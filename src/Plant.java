@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Plant implements Shield {
+public abstract class Plant implements Shield {
     protected String type;
     protected int price;
     protected int shieldpower;
@@ -27,13 +27,11 @@ public class Plant implements Shield {
     {
         Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
         bulletArrayList.add(bullet);
-        if(type.equals("S"))
-        {
-            screen[yplant][xplant+1] = "-";
-        }
-        else if(type.equals("P"))
-        {
+        if(type.equals("P")) {
             screen[yplant][xplant+1] = "=";
+        }
+        else if(type.equals("S")) {
+            screen[yplant][xplant+1] = "-";
         }
     }
 }

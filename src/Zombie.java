@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class Zombie implements Attacker {
+public abstract class Zombie implements Attacker {
     protected String type;
     protected int speed; //zombie speed
     protected int attack; //zombie power
-    protected int x = 107; //muncul dari paling kanan
+    protected int x = 50; //muncul dari paling kanan
     protected int y;
     Random random = new Random();
 
