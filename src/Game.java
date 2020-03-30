@@ -172,6 +172,14 @@ public class Game {
         }
     }
 
+//    public void Shoot()
+//    {
+//        for (Plant allPlants:p)
+//        {
+//            allPlants.gun();
+//        }
+//    }
+
     public void doZombiesWin() {
         for (int i=0; i<=3;i++) {
             if ((screen[i][0].equals("Z")) || (screen[i][0].equals("Y"))) {
@@ -179,6 +187,7 @@ public class Game {
             }
         }
     }
+
     public boolean lose() {
         return gameover;
     }

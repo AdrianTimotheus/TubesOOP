@@ -72,6 +72,9 @@ public class Main {
                     g.zombieMoving();
                     g.zombieAttack();
                 }
+
+                //semua taneman nembak
+//                g.Shoot();
                 g.print();
             }
             else {

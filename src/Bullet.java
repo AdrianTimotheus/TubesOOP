@@ -11,7 +11,8 @@ public abstract class Bullet implements BulletInterface
 
     public void Move(String[][] screen, ArrayList<Zombie> zombieArrayList)
     {
-        for(int i = 1; i<travelSpeed; i++)
+        int i = 1;
+        while(i<travelSpeed)
         {
             if (screen[y][x+i].equals("Z") || screen[y][x+i].equals("Y"))
             {

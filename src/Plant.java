@@ -24,7 +24,9 @@ public class Plant implements Shield {
     public void buy() {
         System.out.println(" ");
     }
-    public void gun() {
+    public void gun()
+    {
         System.out.println(" ");
+//        Bullet bullet = new Bullet()
     }
 }
