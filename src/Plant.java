@@ -31,6 +31,13 @@ public class Plant implements Shield {
 //        System.out.println(" ");
         Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
         bulletArrayList.add(bullet);
-        screen[yplant][xplant+1] = "-";
+        if(type.equals("S"))
+        {
+            screen[yplant][xplant+1] = "-";
+        }
+        else if(type.equals("P"))
+        {
+            screen[yplant][xplant+1] = "="];
+        }
     }
 }
