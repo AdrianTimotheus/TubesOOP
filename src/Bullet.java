@@ -1,32 +1,42 @@
 import java.util.ArrayList;
 
-public abstract class Bullet implements BulletInterface
+public class Bullet implements BulletInterface
 {
-    protected static final int travelSpeed = 6; //kecepatan peluru melayang, konstan buat tiap peluru
-    protected int damage; //seberapa sakit damagenya
+    protected static final int travelSpeed = 1; //kecepatan peluru melayang, konstan buat tiap peluru
+    protected int power; //seberapa sakit damagenya
 
     //posisi bullet
     protected int x;
     protected int y; // konstan
 
-    public void Move(String[][] screen, ArrayList<Zombie> zombieArrayList)
+    public Bullet(int damage, int x, int y)
     {
-        int i = 1;
-        while(i<travelSpeed)
+        this.power = damage;
+        this.x = x;
+        this.y = y;
+    }
+
+    public void Move(String[][] screen)
+    {
+        x++;
+        screen[y][x-1] = "";
+
+        if(power == 2) //pea
         {
-            if (screen[y][x+i].equals("Z") || screen[y][x+i].equals("Y"))
-            {
-                zombieArrayList[]
-            }
+            screen[y][x] = "=";
         }
-        this.x += travelSpeed;
+        else if(power == 1) //sunflower
+        {
+            screen[y][x] = "-";
+        }
+
         //kalo depannya ada zombie, bukan '', lakukan damage() dan destroy() yaitu menghiilangkan peluru dari bulletlist
     }
 
-    public void Damage(Zombie zombie)
-    {
-        zombie.health -= damage;
-        //destroy bullet
-    }
+//    public void Damage(Zombie zombie)
+//    {
+//        zombie.health -= damage;
+//        //destroy bullet
+//    }
 
 }

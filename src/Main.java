@@ -74,7 +74,7 @@ public class Main {
                 }
 
                 //semua taneman nembak
-//                g.Shoot();
+                g.Shoot();
                 g.print();
             }
             else {

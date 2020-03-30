@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Plant implements Shield {
     protected String type;
     protected int price;
@@ -24,9 +26,11 @@ public class Plant implements Shield {
     public void buy() {
         System.out.println(" ");
     }
-    public void gun()
+    public void gun(String[][] screen, ArrayList<Bullet> bulletArrayList)
     {
-        System.out.println(" ");
-//        Bullet bullet = new Bullet()
+//        System.out.println(" ");
+        Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
+        bulletArrayList.add(bullet);
+        screen[yplant][xplant+1] = "-";
     }
 }

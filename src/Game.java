@@ -6,6 +6,7 @@ public class Game {
     public String[][] screen = new String[4][108]; 
     private ArrayList<Plant> p;
     private ArrayList<Zombie> z;
+    private ArrayList<Bullet> bulletArrayList;
     public int credits;
     public boolean gameover = false;
     public int score;
@@ -15,6 +16,7 @@ public class Game {
          credits = c;
          p = new ArrayList<Plant>();
          z = new ArrayList<Zombie>();
+         bulletArrayList = new ArrayList<Bullet>();
     } 
     
     public int getCredits() {
@@ -162,13 +164,20 @@ public class Game {
         }
     }
 
-//    public void Shoot()
-//    {
-//        for (Plant allPlants:p)
-//        {
-//            allPlants.gun();
-//        }
-//    }
+    public void Shoot()
+    {
+        //semua taneman nembak
+        for (Plant allPlants:p)
+        {
+            allPlants.gun(screen,bulletArrayList);
+        }
+
+        //semua peluru tetep terbang
+        for (Bullet allBullets:bulletArrayList)
+        {
+            allBullets.Move(screen);
+        }
+    }
 
     public void doZombiesWin() {
         for (int i=0; i<=3;i++) {
