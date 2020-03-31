@@ -33,6 +33,7 @@ public class Plant implements Shield {
         bulletArrayList.add(bullet);
         if(type.equals("S"))
         {
+
             screen[yplant][xplant+1] = "-";
         }
         else if(type.equals("P"))

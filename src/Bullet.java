@@ -21,14 +21,25 @@ public class Bullet implements BulletInterface
         x++;
         screen[y][x-1] = "";
 
-        if(power == 2) //pea
+        //mengatasi collision peluru sama plant, peluru lain, atau zombie
+        if(screen[y][x].equals("P") || screen[y][x].equals("S"))
         {
-            screen[y][x] = "=";
+            ;//peluru ga ditmapilin biar ga nabrak plantnya
         }
-        else if(power == 1) //sunflower
+
+        else
         {
-            screen[y][x] = "-";
+            // asumsi depan peluru kosong, maju
+            if(power == 2) //pea
+            {
+                screen[y][x] = "=";
+            }
+            else if(power == 1) //sunflower
+            {
+                screen[y][x] = "-";
+            }
         }
+
 
         //kalo depannya ada zombie, bukan '', lakukan damage() dan destroy() yaitu menghiilangkan peluru dari bulletlist
     }
