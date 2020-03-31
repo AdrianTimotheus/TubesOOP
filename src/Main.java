@@ -33,14 +33,14 @@ public class Main {
                 int y = input.nextInt();
                 System.out.print("Posisi ke- (dari kiri: 1-25) :");
                 int x = input.nextInt();
-                while (!g.isEmpty(y,x)) {
+                while (!g.isEmpty(y-1,x-1)) {
                     System.out.println("Posisi yang Anda masukkan saat ini tidak kosong. Silahkan input kembali.");
                     System.out.print("Baris ke- (dari atas: 1-4) :");
                     y = input.nextInt();
                     System.out.print("Posisi ke- (dari kiri: 1-25) :");
                     x = input.nextInt();
                 }
-                if (g.isEmpty(y,x)) {
+                if (g.isEmpty(y-1,x-1)) {
                     int cek = g.getCredits();
                     int sisa;
                         if (choice == 1) {
