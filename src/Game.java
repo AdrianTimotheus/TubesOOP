@@ -9,9 +9,9 @@ public class Game {
     private ArrayList<Plant> p;
     private ArrayList<Zombie> z;
     private ArrayList<Bullet> bulletArrayList;
+    public int score = 0;
     public int credits;
     public boolean gameover = false;
-    public int score = 0;
     Random random = new Random();
 
     public Game(int c) {
@@ -23,10 +23,6 @@ public class Game {
     
     public int getCredits() {
         return this.credits;
-    }
-
-    public int getScore() {
-        return this.score;
     }
 
     public boolean NoCredits() {
@@ -97,7 +93,7 @@ public class Game {
             
     }
     public boolean isEmpty(int y,int x) {
-        if (screen[y][x].equals(" ")) {
+        if (screen[y][x].equals(" ") || screen[y][x].equals("=") || screen[y][x].equals("-") ) {
             return true;
         }
         else {
@@ -137,90 +133,6 @@ public class Game {
                 screen[yy.getY()][40] ="Y";
             }
         } 
-    }
-
-    public void ZombiegotShot() {
-        int x,y,s;
-        String tipe;
-        
-        boolean cek = true;
- 
-        if (cek) {
-            for (int i=0; i<z.size(); i++) {            
-			Zombie now = z.get(i);
-			x = now.getX();
-            y = now.getY();
-            s = now.getSpeed();
-            tipe = now.getType();
-                for (Bullet b: bulletArrayList) {
-                    if ((b.getX() == x) && (b.getY() == y)) {
-                        if (tipe.equals("Z")) {
-                            if (b.getPower()==2) {
-                                now.decrease(2);
-                            }
-                            else {
-                                now.decrease(1);
-                            }
-                        }
-                        else if (tipe.equals("Y")) {
-                            if (b.getPower()==2) {
-                                now.decrease(2);
-                            }
-                            else {
-                                now.decrease(1);
-                            }
-                        }
-
-                        if (now.getAttack() == 0) {
-                            for (Zombie all:z) {
-                                if ((all.getX() == x) && (all.getY() == y)) {
-                                    z.remove(all);
-                                }
-                            }
-                            if (tipe.equals("Z")) {
-                                score += 20;
-                            }
-                            else {
-                                score += 10;
-                            }
-                        }
-                        else {
-                            
-                            screen[y][x-1] = tipe;
-                        }
-
-                    }
-                }
-            }
-        }
-
-        if (cek) {
-            for (int i=0; i<z.size(); i++) {            
-			Zombie now = z.get(i);
-			x = now.getX();
-            y = now.getY();
-            s = now.getSpeed();
-            tipe = now.getType();
-                if (isEmpty(y+1,x+1-s)) { 
-                    if (screen[y][x-s].equals(" ")) {
-                        screen[y][x-s] = tipe;
-                    }
-                }
-                else {
-                    
-                    if (tipe.equals("Z")) {
-
-                        screen[y][x-1] = tipe;
-                    }
-                    else {
-                        screen[y][x] = "Y";
-                    }
-                }
-                now.setX(x-s);
-            }
-
-
-		}
     }
 
     public void zombieMoving() {

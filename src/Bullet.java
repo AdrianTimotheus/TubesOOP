@@ -8,12 +8,22 @@ public class Bullet implements BulletInterface
     //posisi bullet
     protected int x;
     protected int y; // konstan
+    protected String type;
+    public int score;
 
     public Bullet(int damage, int x, int y)
     {
         this.power = damage;
         this.x = x;
         this.y = y;
+        if (damage == 2) //pea
+        {
+            type = "=";
+        }
+        else if (power == 1) //sunflower
+        {
+            type = "-";
+        }
     }
     public int getX() {
         return this.x;
@@ -23,6 +33,12 @@ public class Bullet implements BulletInterface
     }
     public int getPower() {
         return this.power;
+    }
+    public int getScore() {
+        return this.score;
+    }
+    public String getType() {
+        return this.type;
     }
 
     public void Move(String[][] screen)
@@ -36,6 +52,7 @@ public class Bullet implements BulletInterface
         else if (screen[y][x].equals("S")) {
             screen[y][x] = "S";
         }
+        
         else if (power == 2) //pea
         {
             screen[y][x] = "=";
