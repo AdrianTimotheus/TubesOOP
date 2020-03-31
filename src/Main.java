@@ -76,7 +76,6 @@ public class Main {
                 }
 
                 //semua taneman nembak
-                
                 g.print();
             }
             else {
