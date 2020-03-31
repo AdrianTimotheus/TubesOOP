@@ -27,11 +27,20 @@ public abstract class Plant implements Shield {
     {
         Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
         bulletArrayList.add(bullet);
-        if(type.equals("P")) {
+
+        if (screen[yplant][xplant+1].equals("P")) { //jika ada tumbuhan lain di depannya
+            screen[yplant][xplant+1] = "P";
+        }
+        else if (screen[yplant][xplant+1].equals("S")) {
+            screen[yplant][xplant+1] = "S";
+        }
+        else if(type.equals("P")) {
             screen[yplant][xplant+1] = "=";
         }
         else if(type.equals("S")) {
             screen[yplant][xplant+1] = "-";
         }
+
+
     }
 }

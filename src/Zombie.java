@@ -4,7 +4,7 @@ public abstract class Zombie implements Attacker {
     protected String type;
     protected int speed; //zombie speed
     protected int attack; //zombie power
-    protected int x = 50; //muncul dari paling kanan
+    protected int x = 40; //muncul dari paling kanan
     protected int y;
     Random random = new Random();
 
@@ -12,7 +12,7 @@ public abstract class Zombie implements Attacker {
         this.type = type;
         this.speed = speed; // speed = jumlah steps sekali jalan
         this.attack = attack;
-        y = random.nextInt(4);
+        this.y = random.nextInt(4);
     }
     public String getType() {
         return this.type;
@@ -32,11 +32,17 @@ public abstract class Zombie implements Attacker {
     public int getY() {
         return this.y;
     }
+    public void setY(int y) {
+        this.y = y;
+    }
     public int getSpeed() {
         return this.speed;
     }
     public int getAttack() {
         return this.attack;
+    }
+    public void decrease (int gun) {
+        this.attack -= gun;
     }
 }
 

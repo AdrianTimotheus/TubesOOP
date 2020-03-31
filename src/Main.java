@@ -63,6 +63,8 @@ public class Main {
                 System.out.println("Maaf, Anda tidak memiliki sisa credits. Pembelian tidak dapat dilakukan.");
             }
             else if (command.equals("SKIP")) {
+                g.Shoot();
+                
                 valid = true; 
                 if (steps == 1) { //pertama kali zombie muncul di layar
                     g.zombieAttack();
@@ -74,7 +76,7 @@ public class Main {
                 }
 
                 //semua taneman nembak
-                g.Shoot();
+                
                 g.print();
             }
             else {
@@ -84,7 +86,7 @@ public class Main {
             g.doZombiesWin();
         }
         if (g.lose()) {
-            System.out.println("Permainan telah berakhir. Score akhir Anda adalah");
+            System.out.println("Permainan telah berakhir. Score akhir Anda adalah "+g.score);
         }
     }
 }
