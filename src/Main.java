@@ -31,16 +31,16 @@ public class Main {
                 System.out.println("Anda dapat memilih lokasi untuk meletakkan Plant tsb.");
                 System.out.print("Baris ke- (dari atas: 1-4) :");
                 int y = input.nextInt();
-                System.out.print("Posisi ke- (dari kiri: 1-50) :");
+                System.out.print("Posisi ke- (dari kiri: 1-25) :");
                 int x = input.nextInt();
-                while (!g.isEmpty(y,x)) {
+                while (!g.isEmpty(y-1,x-1)) {
                     System.out.println("Posisi yang Anda masukkan saat ini tidak kosong. Silahkan input kembali.");
                     System.out.print("Baris ke- (dari atas: 1-4) :");
                     y = input.nextInt();
-                    System.out.print("Posisi ke- (dari kiri: 1-50) :");
+                    System.out.print("Posisi ke- (dari kiri: 1-25) :");
                     x = input.nextInt();
                 }
-                if (g.isEmpty(y,x)) {
+                if (g.isEmpty(y-1,x-1)) {
                     int cek = g.getCredits();
                     int sisa;
                         if (choice == 1) {
@@ -63,6 +63,8 @@ public class Main {
                 System.out.println("Maaf, Anda tidak memiliki sisa credits. Pembelian tidak dapat dilakukan.");
             }
             else if (command.equals("SKIP")) {
+                g.Shoot();
+                
                 valid = true; 
                 if (steps == 1) { //pertama kali zombie muncul di layar
                     g.zombieAttack();
@@ -74,7 +76,7 @@ public class Main {
                 }
 
                 //semua taneman nembak
-                g.Shoot();
+                
                 g.print();
             }
             else {
@@ -84,7 +86,7 @@ public class Main {
             g.doZombiesWin();
         }
         if (g.lose()) {
-            System.out.println("Permainan telah berakhir. Score akhir Anda adalah");
+            System.out.println("Permainan telah berakhir. Score akhir Anda adalah "+g.score);
         }
     }
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Plant implements Shield {
+public abstract class Plant implements Shield {
     protected String type;
     protected int price;
     protected int shieldpower;
@@ -23,22 +23,24 @@ public class Plant implements Shield {
     public int getPower() {
         return this.shieldpower;
     }
-    public void buy() {
-        System.out.println(" ");
-    }
     public void gun(String[][] screen, ArrayList<Bullet> bulletArrayList)
     {
-//        System.out.println(" ");
         Bullet bullet = new Bullet(shieldpower,xplant+1,yplant);
         bulletArrayList.add(bullet);
-        if(type.equals("S"))
-        {
 
+        if (screen[yplant][xplant+1].equals("P")) { //jika ada tumbuhan lain di depannya
+            screen[yplant][xplant+1] = "P";
+        }
+        else if (screen[yplant][xplant+1].equals("S")) {
+            screen[yplant][xplant+1] = "S";
+        }
+        else if(type.equals("P")) {
+            screen[yplant][xplant+1] = "=";
+        }
+        else if(type.equals("S")) {
             screen[yplant][xplant+1] = "-";
         }
-        else if(type.equals("P"))
-        {
-            screen[yplant][xplant+1] = "="];
-        }
+
+
     }
 }

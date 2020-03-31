@@ -15,19 +15,32 @@ public class Bullet implements BulletInterface
         this.x = x;
         this.y = y;
     }
+    public int getX() {
+        return this.x;
+    }
+    public int getY() {
+        return this.y;
+    }
+    public int getPower() {
+        return this.power;
+    }
 
     public void Move(String[][] screen)
     {
         x++;
-        screen[y][x-1] = "";
+        screen[y][x-1] =" ";
 
-        //mengatasi collision peluru sama plant, peluru lain, atau zombie
-        if(screen[y][x].equals("P") || screen[y][x].equals("S"))
+        if (screen[y][x].equals("P")) {
+            screen[y][x] = "P";  
+        }
+        else if (screen[y][x].equals("S")) {
+            screen[y][x] = "S";
+        }
+        else if (power == 2) //pea
         {
             ;//peluru ga ditmapilin biar ga nabrak plantnya
         }
-
-        else
+        else if (power == 1) //sunflower
         {
             // asumsi depan peluru kosong, maju
             if(power == 2) //pea
@@ -40,6 +53,7 @@ public class Bullet implements BulletInterface
             }
         }
 
+        
 
         //kalo depannya ada zombie, bukan '', lakukan damage() dan destroy() yaitu menghiilangkan peluru dari bulletlist
     }

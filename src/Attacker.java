@@ -1,5 +1,8 @@
 public interface Attacker {
     public String getType();
-    public void showup();
-    public void attack();
+    public int getX();
+    public int getY();
+    public void move();
+    public int getSpeed();
+    public int getAttack();
 }

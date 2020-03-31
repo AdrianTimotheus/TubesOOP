@@ -1,15 +1,17 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game {
-    public String[][] screen = new String[4][108]; 
+    public String[][] screen = new String[4][41]; 
     private ArrayList<Plant> p;
     private ArrayList<Zombie> z;
     private ArrayList<Bullet> bulletArrayList;
     public int credits;
     public boolean gameover = false;
-    public int score;
+    public int score = 0;
     Random random = new Random();
 
     public Game(int c) {
@@ -48,7 +50,7 @@ public class Game {
         System.out.println("|               | |          | |       |     |               \\  /           |      /         |        | |    |    | |       | | |       ");
         System.out.println("|               |  \\_________| |       |     |____            \\/    ________|     /_________ |________| |    |    | |_______| | |_______");
         for (int i=0; i<=3; i++) {
-            for (int j=0; j<=107; j++) {
+            for (int j=0; j<=40; j++) {
                 screen[i][j] =" ";
             }
         }
@@ -64,7 +66,7 @@ public class Game {
         int index=0;
         for (int i=1; i<=9; i++) {
                 if (i%2!=0) {
-                    for (int j=1; j<=110; j++) {
+                    for (int j=1; j<=43; j++) {
                         System.out.print("-");
                     }
                     System.out.println("\n");
@@ -85,7 +87,7 @@ public class Game {
                         index = 3;
                     }
                         System.out.print("|");
-                            for (int j=0; j<=107; j++) {
+                            for (int j=0; j<=40; j++) {
                                 System.out.print(screen[index][j] );
                             }
                         System.out.println("|");
@@ -95,7 +97,7 @@ public class Game {
             
     }
     public boolean isEmpty(int y,int x) {
-        if (screen[y-1][x-1].equals(" ")) {
+        if (screen[y][x].equals(" ")) {
             return true;
         }
         else {
@@ -124,15 +126,101 @@ public class Game {
             int m = random.nextInt(2);
             if (m==0) {
                 Zombie zz = new Zambi();
+                zz.setX(40);
                 z.add(zz);
-                screen[zz.getY()][107] ="Z";
+                screen[zz.getY()][40] ="Z";
             }
             else {
                 Zombie yy = new Yombie();
+                yy.setX(40);
                 z.add(yy);
-                screen[yy.getY()][107] ="Y";
+                screen[yy.getY()][40] ="Y";
             }
         } 
+    }
+
+    public void ZombiegotShot() {
+        int x,y,s;
+        String tipe;
+        
+        boolean cek = true;
+ 
+        if (cek) {
+            for (int i=0; i<z.size(); i++) {            
+			Zombie now = z.get(i);
+			x = now.getX();
+            y = now.getY();
+            s = now.getSpeed();
+            tipe = now.getType();
+                for (Bullet b: bulletArrayList) {
+                    if ((b.getX() == x) && (b.getY() == y)) {
+                        if (tipe.equals("Z")) {
+                            if (b.getPower()==2) {
+                                now.decrease(2);
+                            }
+                            else {
+                                now.decrease(1);
+                            }
+                        }
+                        else if (tipe.equals("Y")) {
+                            if (b.getPower()==2) {
+                                now.decrease(2);
+                            }
+                            else {
+                                now.decrease(1);
+                            }
+                        }
+
+                        if (now.getAttack() == 0) {
+                            for (Zombie all:z) {
+                                if ((all.getX() == x) && (all.getY() == y)) {
+                                    z.remove(all);
+                                }
+                            }
+                            if (tipe.equals("Z")) {
+                                score += 20;
+                            }
+                            else {
+                                score += 10;
+                            }
+                        }
+                        else {
+                            
+                            screen[y][x-1] = tipe;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (cek) {
+            for (int i=0; i<z.size(); i++) {            
+			Zombie now = z.get(i);
+			x = now.getX();
+            y = now.getY();
+            s = now.getSpeed();
+            tipe = now.getType();
+                if (isEmpty(y+1,x+1-s)) { 
+                    if (screen[y][x-s].equals(" ")) {
+                        screen[y][x-s] = tipe;
+                    }
+                }
+                else {
+                    
+                    if (tipe.equals("Z")) {
+
+                        screen[y][x-1] = tipe;
+                    }
+                    else {
+                        screen[y][x] = "Y";
+                    }
+                }
+                now.setX(x-s);
+            }
+
+
+		}
     }
 
     public void zombieMoving() {
@@ -146,38 +234,42 @@ public class Game {
             s = now.getSpeed();
             tipe = now.getType();
             screen[y][x] = " ";
-            if (isEmpty(y+1,x+1-s)) {
+            if (isEmpty(y,x-s)) {
+                now.setX(x-s);
                 screen[y][x-s] = tipe;
             }
             else {
-                now.setX(x+1);
-                if (tipe.equals("Z")) {
                     screen[y][x-1] = tipe;
-                }
-                else {
-                    screen[y][x] = "Y";
-                }
+                now.setX(x-1);
             }
+
 		}
-        for (Zombie all:z) {
-            all.move();
-        }
     }
 
     public void Shoot()
     {
-        //semua taneman nembak
-        for (Plant allPlants:p)
-        {
-            allPlants.gun(screen,bulletArrayList);
+        
+        if (bulletArrayList.size()==0) { //start nembak
+            //semua tanaman nembak
+            for (Plant allPlants:p)
+            {
+                allPlants.gun(screen,bulletArrayList);
+            }
         }
-
-        //semua peluru tetep terbang
-        for (Bullet allBullets:bulletArrayList)
-        {
-            allBullets.Move(screen);
+        else {
+            //semua peluru yg sudah ada tetep terbang
+            for (Bullet allBullets:bulletArrayList)
+            {
+                allBullets.Move(screen);
+            }
+            //semua tanaman nembak
+            for (Plant allPlants:p)
+            {
+                allPlants.gun(screen,bulletArrayList);
+            }
         }
     }
+    
 
     public void doZombiesWin() {
         for (int i=0; i<=3;i++) {
