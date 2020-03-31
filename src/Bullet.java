@@ -55,11 +55,19 @@ public class Bullet implements BulletInterface
         
         else if (power == 2) //pea
         {
-            screen[y][x] = "=";
+            ;//peluru ga ditmapilin biar ga nabrak plantnya
         }
         else if (power == 1) //sunflower
         {
-            screen[y][x] = "-";
+            // asumsi depan peluru kosong, maju
+            if(power == 2) //pea
+            {
+                screen[y][x] = "=";
+            }
+            else if(power == 1) //sunflower
+            {
+                screen[y][x] = "-";
+            }
         }
 
         
