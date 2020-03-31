@@ -35,7 +35,7 @@ public abstract class Plant implements Shield {
             screen[yplant][xplant+1] = "S";
         }
         else if(type.equals("P")) {
-            screen[yplant][xplant+1] = "=";
+            screen[yplant][xplant+1] = "-";
         }
         else if(type.equals("S")) {
             screen[yplant][xplant+1] = "-";
