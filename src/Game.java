@@ -136,7 +136,7 @@ public class Game {
     }
 
     public void zombieMoving() {
-        int x,y,s;
+        int x,y,s, min;
         String tipe;
         
         for (int i=0; i<z.size(); i++) {
@@ -144,16 +144,48 @@ public class Game {
 			x = now.getX();
             y = now.getY();
             s = now.getSpeed();
+            min = x-s;
             tipe = now.getType();
             screen[y][x] = " ";
-            if (isEmpty(y,x-s)) {
-                now.setX(x-s);
-                screen[y][x-s] = tipe;
+            if ((min)<0) {
+                (min) = 0;
+            }
+            if (now.isShot(screen,x,y)) {
+                now.decrease(screen,x,y);
+            }
+            if (now.dead()) {
+                score += now.points();
+                screen[y][x] = screen[y][x-1];
+                z.remove(i);
             }
             else {
+                if (isEmpty(y,min)) {
+                    if (screen[y][min].equals(" ")) {
+                        screen[y][min] = tipe;
+                        now.setX(min);
+                    }
+                    else {
+                        screen[y][x] = screen[y][x-1];
+                        screen[y][min] = tipe;
+                        now.setX(min);
+                    }
+                }
+                else {
                     screen[y][x-1] = tipe;
-                now.setX(x-1);
+                    now.setX(x-1);
+               }
             }
+            
+
+
+            //if (isEmpty(y,x-s)) {
+            //    now.setX(x-s);
+            //    screen[y][x-s] = tipe;
+            //}
+            //else {
+            //        screen[y][x-1] = tipe;
+            //    now.setX(x-1);
+            //}
 
 		}
     }

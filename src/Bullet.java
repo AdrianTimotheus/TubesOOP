@@ -44,6 +44,9 @@ public class Bullet implements BulletInterface
     public void Move(String[][] screen)
     {
         x++;
+        if (x>40) {
+            x=40;
+        }
         screen[y][x-1] =" ";
 
         if (screen[y][x].equals("P")) {
@@ -55,19 +58,11 @@ public class Bullet implements BulletInterface
         
         else if (power == 2) //pea
         {
-            ;//peluru ga ditmapilin biar ga nabrak plantnya
+            screen[y][x] = "=";
         }
         else if (power == 1) //sunflower
         {
-            // asumsi depan peluru kosong, maju
-            if(power == 2) //pea
-            {
-                screen[y][x] = "=";
-            }
-            else if(power == 1) //sunflower
-            {
-                screen[y][x] = "-";
-            }
+            screen[y][x] = "-";
         }
 
         
